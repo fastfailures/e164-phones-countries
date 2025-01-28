@@ -1,6 +1,6 @@
 [package]
 name = "e164-phones-countries"
-version = "0.1.2"
+version = "0.2.0-alpha.1"
 authors = ["<visualjeff@linux.com>"]
 description = "A small Rust library which maps E.164 international phone numbers to ISO 3166 country codes as well as the ISO 3166 country codes to country phone codes."
 documentation = "https://github.com/fastfailures/e164-phones-countries"
