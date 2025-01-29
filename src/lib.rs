@@ -271,13 +271,15 @@ impl TerritoryCode {
     pub fn calling_codes(&self) -> CallingCodes {
         macro_rules! single_calling_code {
             ($value:literal) => {
-                CallingCodes(CallingCodesInner::Single([NonZeroU32::new($value).unwrap()]))
-            }
+                CallingCodes(CallingCodesInner::Single(
+                    [NonZeroU32::new($value).unwrap()],
+                ))
+            };
         }
         macro_rules! cc {
             ($value:literal) => {
                 NonZeroU32::new($value).unwrap()
-            }
+            };
         }
         match *self {
             Self::US => single_calling_code!(1),
