@@ -1,11 +1,11 @@
 [package]
 name = "e164-phones-countries"
-version = "0.1.2"
-authors = ["<visualjeff@linux.com>"]
-description = "A small utility which maps E.164 international phone numbers to ISO 3166 country codes as well as the ISO 3166 country codes to country phone codes."
-documentation = "https://github.com/visualjeff/e164-phones-countries"
-homepage = "https://github.com/visualjeff/e164-phones-countries"
-repository = "https://github.com/visualjeff/e164-phones-countries.git"
+version = "0.2.0-alpha.1"
+authors = ["visualjeff <visualjeff@linux.com>", "A248", "Xandre Ibuquil"]
+description = "A small Rust library which maps E.164 international phone numbers to ISO 3166 country codes as well as the ISO 3166 country codes to country phone codes."
+documentation = "https://github.com/fastfailures/e164-phones-countries"
+homepage = "https://github.com/fastfailures/e164-phones-countries"
+repository = "https://github.com/fastfailures/e164-phones-countries"
 readme = "README.md"
-keywords = ["e164", "ISO3166"]
+keywords = ["E.164", "ISO3166"]
 license = "MIT"

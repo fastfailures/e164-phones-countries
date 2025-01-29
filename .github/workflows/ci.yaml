@@ -1,0 +1,42 @@
+name: CI checks & tests
+
+on:
+  push:
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  CI: "true" # https://insta.rs/docs/quickstart/#continuous-integration
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup component add rustfmt
+      - run: cargo fmt -- --check
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+          - beta
+          - nightly
+    steps:
+      - uses: actions/checkout@v4
+      - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: rustup component add clippy
+      - run: cargo build --verbose
+      - run: cargo clippy --all-features -- --deny warnings --forbid unsafe_code
+      - run: cargo test --verbose
+
+  semver-checks:
+    # https://github.com/obi1kenobi/cargo-semver-checks-action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check semver
+        uses: obi1kenobi/cargo-semver-checks-action@v2

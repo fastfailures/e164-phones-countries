@@ -271,13 +271,15 @@ impl TerritoryCode {
     pub fn calling_codes(&self) -> CallingCodes {
         macro_rules! single_calling_code {
             ($value:literal) => {
-                CallingCodes(CallingCodesInner::Single([NonZeroU32::new($value).unwrap()]))
-            }
+                CallingCodes(CallingCodesInner::Single(
+                    [NonZeroU32::new($value).unwrap()],
+                ))
+            };
         }
         macro_rules! cc {
             ($value:literal) => {
                 NonZeroU32::new($value).unwrap()
-            }
+            };
         }
         match *self {
             Self::US => single_calling_code!(1),
@@ -1680,7 +1682,7 @@ impl TerritoryCode {
         Ok(if get_phone_leading_digits(1) == 1 {
             let first_four = get_phone_leading_digits(4);
             match lookup_table(first_four) {
-                Some(found) => found.clone(),
+                Some(found) => found,
                 None => return Err(FromPhoneError::NotFound),
             }
         } else {
@@ -1692,7 +1694,7 @@ impl TerritoryCode {
                 }
                 let leading_digits = get_phone_leading_digits(prefix_len);
                 if let Some(found) = lookup_table(leading_digits) {
-                    break found.clone();
+                    break found;
                 }
                 prefix_len -= 1;
             }

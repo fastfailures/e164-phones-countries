@@ -1,0 +1,4 @@
+[codespell]
+context = 1
+skip = ./target,.git,.mypy_cache,*.lock,./mutants.out*
+ignore-words-list = crate,FO
